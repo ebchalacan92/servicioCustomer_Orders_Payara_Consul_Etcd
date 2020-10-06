@@ -1,0 +1,40 @@
+
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "gradle.plugin.fish.payara.gradle.plugins:payara-micro-gradle-plugin:1.0.3"
+	}
+}
+
+apply plugin: "war"
+apply plugin: "fish.payara.micro-gradle-plugin"
+
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	compile group: 'javax', name: 'javaee-api', version: '8.0.1'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+	compile group: 'org.eclipse.microprofile.config', name: 'microprofile-config-api', version: '1.4'
+	
+	compile group: 'org.microprofile-ext.config-ext', name: 'configsource-etcd', version: '1.0.9'
+	compile group: 'org.microprofile-ext.config-ext', name: 'configsource-consul' , version: '1.0.9'
+	
+	// https://mvnrepository.com/artifact/org.eclipse.microprofile.rest.client/microprofile-rest-client-api
+	compile group: 'org.eclipse.microprofile.rest.client', name: 'microprofile-rest-client-api', version: '1.4.1'
+	// https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api
+	compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
+}
+
+payaraMicro {
+    payaraVersion = '5.2020.4'
+    deployWar = true
+    useUberJar = true
+    daemon = false
+}

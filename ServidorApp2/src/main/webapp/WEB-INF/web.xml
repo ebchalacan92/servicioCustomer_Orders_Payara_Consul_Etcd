@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <data-source>
+        <name>java:app/microprofile/orders</name>
+        <class-name>${MPCONFIG=mysql.driver}</class-name>
+        <server-name>${MPCONFIG=mysql.server}</server-name>
+        <database-name>${MPCONFIG=mysql.database}</database-name>
+        <user>${MPCONFIG=mysql.user}</user>
+        <password>${MPCONFIG=mysql.password}</password>
+        <property>
+            <name>useSSL</name>
+            <value>false</value>
+        </property> 
+        <property>
+            <name>allowPublicKeyRetrieval</name>
+            <value>true</value>
+        </property> 
+        <property>
+            <name>requireSSL</name>
+            <value>true</value>
+        </property> 
+        <property>
+            <name>serverTimezone</name>
+            <value>UTC</value>
+        </property> 
+    </data-source>
+</web-app>
